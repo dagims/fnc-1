@@ -5,6 +5,7 @@ LABELS = ['agree', 'disagree', 'discuss', 'unrelated']
 LABELS_RELATED = ['unrelated','related']
 RELATED = LABELS[0:3]
 
+
 def score_submission(gold_labels, test_labels):
     score = 0.0
     cm = [[0, 0, 0, 0],
@@ -12,7 +13,7 @@ def score_submission(gold_labels, test_labels):
           [0, 0, 0, 0],
           [0, 0, 0, 0]]
 
-    for i, (g, t) in enumerate(zip(gold_labels, test_labels)):
+    for _, (g, t) in enumerate(zip(gold_labels, test_labels)):
         g_stance, t_stance = g, t
         if g_stance == t_stance:
             score += 0.25
@@ -45,20 +46,21 @@ def print_confusion_matrix(cm):
     print('\n'.join(lines))
 
 
-def report_score(actual,predicted):
-    score,cm = score_submission(actual,predicted)
-    best_score, _ = score_submission(actual,actual)
+def report_score(actual, predicted):
+    score,cm = score_submission(actual, predicted)
+    best_score, _ = score_submission(actual, actual)
 
     print_confusion_matrix(cm)
-    print("Score: " +str(score) + " out of " + str(best_score) + "\t("+str(score*100/best_score) + "%)")
+    print("Score: " + str(score) + " out of " + str(best_score) + "\t("+str(score*100/best_score) + "%)")
     return score*100/best_score
 
 
 if __name__ == "__main__":
-    actual = [0,0,0,0,1,1,0,3,3]
-    predicted = [0,0,0,0,1,1,2,3,3]
+    actual = [0, 0, 0, 0, 1, 1, 0, 3, 3]
+    predicted = [0, 0, 0, 0, 1, 1, 2, 3, 3]
 
-    report_score([LABELS[e] for e in actual],[LABELS[e] for e in predicted])
+    report_score([LABELS[e] for e in actual], [LABELS[e] for e in predicted])
+
  #   Copyright 2017 Cisco Systems, Inc.
  #  
  #   Licensed under the Apache License, Version 2.0 (the "License");

@@ -55,7 +55,7 @@ def break_it( df, percentage ):
             c = Counter( this_indx )
             this_true_count = c[True]
 
-            print "true count {}\n".format( this_true_count )
+            print ("true count {}\n".format( this_true_count ))
 
         found_rows = found_rows | this_indx
         tagged_rows += this_true_count

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import sys
-import cPickle
+import pickle
 import numpy as np
 from itertools import chain
 from sklearn.model_selection import StratifiedKFold
@@ -50,10 +50,10 @@ def build_data():
 
     data_x = np.hstack(features)
 
-    print 'data_x.shape'
-    print data_x.shape
-    print 'data_y.shape'
-    print data_y.shape
+    print ('data_x.shape')
+    print (data_x.shape)
+    print ('data_y.shape')
+    print (data_y.shape)
 
     return data_x, data_y
 
@@ -90,24 +90,24 @@ def cv():
     random_seed = 2017
     #skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=random_seed)
     #with open('skf.pkl', 'wb') as outfile:
-    #    cPickle.dump(skf, outfile, -1)
+    #    pickle.dump(skf, outfile, -1)
     #    print 'skf saved'
     
     scores = []
     best_iters = [0]*5
     pscores = []
     with open('skf.pkl', 'rb') as infile:
-        skf = cPickle.load(infile)
+        skf = pickle.load(infile)
 
         for fold, (trainInd, validInd) in enumerate(skf.split(data_x, data_y)):
-            print 'fold %s' % fold
+            print ('fold %s' % fold)
             x_train = data_x[trainInd]
             y_train = data_y[trainInd]
             x_valid = data_x[validInd]
             y_valid = data_y[validInd]
             
-            print 'perfect_score: ', perfect_score(y_valid)
-            print Counter(y_valid)
+            print ('perfect_score: ', perfect_score(y_valid))
+            print (Counter(y_valid))
             #break
             dtrain = xgb.DMatrix(x_train, label=y_train)
             dvalid = xgb.DMatrix(x_valid, label=y_valid)
@@ -121,33 +121,32 @@ def cv():
             #pred_y = bst.predict(dvalid, ntree_limit=bst.best_ntree_limit)
             #print 'best iterations: ', bst.best_ntree_limit
             pred_y = bst.predict(dvalid)
-            print pred_y
-            print Counter(pred_y)
+            print (pred_y)
+            print (Counter(pred_y))
             #pred_y = np.argmax(bst.predict(dvalid, ntree_limit=bst.best_ntree_limit), axis=1)
-            print 'pred_y.shape'
-            print pred_y.shape
-            print 'y_valid.shape'
-            print y_valid.shape
+            print ('pred_y.shape')
+            print (pred_y.shape)
+            print ('y_valid.shape')
+            print (y_valid.shape)
             s = fscore(pred_y, y_valid)
             s_perf = perfect_score(y_valid)
-            print 'fold %s, score = %d, perfect_score %d' % (fold, s, s_perf)
+            print ('fold %s, score = %d, perfect_score %d' % (fold, s, s_perf))
             scores.append(s)
             pscores.append(s_perf)
             #break
 
-    print 'scores:'
-    print scores
-    print 'mean score:'
-    print np.mean(scores)
-    print 'perfect scores:'
-    print pscores
-    print 'mean perfect score:'
-    print np.mean(pscores)
+    print ('scores:')
+    print (scores)
+    print ('mean score:')
+    print (np.mean(scores))
+    print ('perfect scores:')
+    print (pscores)
+    print ('mean perfect score:')
+    print (np.mean(pscores))
 
 if __name__ == '__main__':
     #build_data()
     cv()
-
  #   Copyright 2017 Cisco Systems, Inc.
  #  
  #   Licensed under the Apache License, Version 2.0 (the "License");

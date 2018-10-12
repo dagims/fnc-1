@@ -1,5 +1,5 @@
 from FeatureGenerator import *
-import cPickle
+import pickle
 import pandas as pd
 from helpers import *
 
@@ -19,8 +19,8 @@ class TargetFeatureGenerator(FeatureGenerator):
         targets = df['target'].values
         outfilename_target = "%s.target.pkl" % header
         with open(outfilename_target, "wb") as outfile:
-            cPickle.dump(target, outfile, -1)
-        print 'targets saved in %s' % outfilename_target
+            pickle.dump(target, outfile, -1)
+        print ('targets saved in %s' % outfilename_target)
         
         return targets
 
@@ -29,9 +29,9 @@ class TargetFeatureGenerator(FeatureGenerator):
 
         filename_target = "%s.target.pkl" % header
         with open(filename_target, "rb") as infile:
-            target = cPickle.load(infile)
-            print 'target.shape:'
-            print target.shape
+            target = pickle.load(infile)
+            print ('target.shape:')
+            print (target.shape)
 
         return target
 

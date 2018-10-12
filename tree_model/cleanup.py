@@ -52,8 +52,8 @@ def process(lines):
 def open_process_rewrite(filename):
     with open(filename, "rb") as fp:
         lines = fp.readlines()
-        #print 'lines: -------------'
-        #print lines
+        #print ('lines: -------------')
+        #print (lines)
 
     lines = process(lines)
     path_part, ext_part = os.path.splitext(filename)
