@@ -1,3 +1,7 @@
+**Modified the original code by Solat in the Swen to support Python3.**
+**Let me know if there is any issue with any modification.**
+**--Arvin**
+
 <p align="center">
 <img src="https://github.com/Cisco-Talos/fnc-1/blob/master/images/solat-in-the-swen.gif" alt="TALOS IN THE NEWS"/>
 </p>
