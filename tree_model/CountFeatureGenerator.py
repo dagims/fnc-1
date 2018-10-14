@@ -153,9 +153,9 @@ class CountFeatureGenerator(FeatureGenerator):
         return [xBasicCounts]
 
 if __name__ == '__main__':
-    pass
-    #cf = CountFeatureGenerator()
-    #cf.read()
+	
+    cf = CountFeatureGenerator()
+    cf.read()
 
  #   Copyright 2017 Cisco Systems, Inc.
  #  
