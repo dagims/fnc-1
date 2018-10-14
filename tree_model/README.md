@@ -41,7 +41,7 @@ This modules uses the Sentiment Analyzer in the `NLTK` package to assign a senti
 The classifier used in this model is [Gradient Boosted Trees](https://en.wikipedia.org/wiki/Gradient_boosting). A very efficient implementation of GBDT is [XGBoost](http://xgboost.readthedocs.io/en/latest/). 10-fold cross-validation is used to estimate the performance of this model.
 
 ## Library Dependencies
-* Python 2.7
+* Python >= 3.5
 * Scipy Stack (`numpy`, `scipy` and `pandas`)
 * [scikit-learn](http://scikit-learn.org/stable/)
 * [XGBoost](http://xgboost.readthedocs.io/en/latest/)
