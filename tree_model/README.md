@@ -41,7 +41,7 @@ This modules uses the Sentiment Analyzer in the `NLTK` package to assign a senti
 The classifier used in this model is [Gradient Boosted Trees](https://en.wikipedia.org/wiki/Gradient_boosting). A very efficient implementation of GBDT is [XGBoost](http://xgboost.readthedocs.io/en/latest/). 10-fold cross-validation is used to estimate the performance of this model.
 
 ## Library Dependencies
-* Python >= 3.5
+* Python 2.7
 * Scipy Stack (`numpy`, `scipy` and `pandas`)
 * [scikit-learn](http://scikit-learn.org/stable/)
 * [XGBoost](http://xgboost.readthedocs.io/en/latest/)
@@ -99,6 +99,10 @@ All the output files are also stored under `./results/` and all parameters are h
 
 ## Questions?
 Contact Yuxi Pan (`yuxpan@cisco.com`) for bugs and questions.
+
+**Side note:** To run `AlignmentFeatureGenerator.py`, download [ppdb.pickle](https://www.dropbox.com/sh/9t7fd7xfahb0e1v/AACUnYNgmhwvKAiZeq7jSKtMa/pickled?dl=0&subfolder_nav_tracking=1) file.
+
+Thanks to [willferreira](https://github.com/willferreira/mscproject). --Arvin
 
  <!--
    Copyright 2017 Cisco Systems, Inc.
