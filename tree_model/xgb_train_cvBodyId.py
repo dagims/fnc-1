@@ -44,7 +44,7 @@ def build_data():
     data = pd.merge(stances, body, how='left', on='Body ID')
     targets = ['agree', 'disagree', 'discuss', 'unrelated']
     targets_dict = dict(zip(targets, range(len(targets))))
-    data['target'] = map(lambda x: targets_dict[x], data['Stance'])
+    data['target'] = list(map(lambda x: targets_dict[x], data['Stance']))
     
     data_y = data['target'].values
 
@@ -221,7 +221,7 @@ def cv():
     data = pd.merge(stances, body, how='left', on='Body ID')
     targets = ['agree', 'disagree', 'discuss', 'unrelated']
     targets_dict = dict(zip(targets, range(len(targets))))
-    data['target'] = map(lambda x: targets_dict[x], data['Stance'])
+    data['target'] = list(map(lambda x: targets_dict[x], data['Stance']))
     test_df = data.ix[holdout_idx]    
 
     cv_ids = set([int(x.rstrip()) for x in file('training_ids.txt')])
@@ -374,7 +374,7 @@ def show_incorrect_pred(actual, predicted, idx_valid):
 
     targets = ['agree', 'disagree', 'discuss', 'unrelated']
     targets_dict = dict(zip(targets, range(len(targets))))
-    data['target'] = map(lambda x: targets_dict[x], data['Stance'])
+    data['target'] = list(map(lambda x: targets_dict[x], data['Stance']))
     print ('before, data.shape:')
     print (data.shape)
     data = data.ix[idx_valid]

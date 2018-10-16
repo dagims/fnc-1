@@ -33,7 +33,7 @@ def build_data():
     data = pd.merge(body, stances, how='right', on='Body ID')
     targets = ['agree', 'disagree', 'discuss', 'unrelated']
     targets_dict = dict(zip(targets, range(len(targets))))
-    data['target'] = map(lambda x: targets_dict[x], data['Stance'])
+    data['target'] = list(map(lambda x: targets_dict[x], data['Stance']))
     
     data_y = data['target'].values
     

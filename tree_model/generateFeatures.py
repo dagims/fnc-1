@@ -21,7 +21,7 @@ def process():
         train = pd.merge(stances_train, body_train, how='left', on='Body ID')
         targets = ['agree', 'disagree', 'discuss', 'unrelated']
         targets_dict = dict(zip(targets, range(len(targets))))
-        train['target'] = map(lambda x: targets_dict[x], train['Stance'])
+        train['target'] = list(map(lambda x: targets_dict[x], train['Stance']))
         print ('train.shape:')
         print (train.shape)
         n_train = train.shape[0]

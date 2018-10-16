@@ -23,7 +23,7 @@ def load_data():
 
     targets = ['agree', 'disagree', 'discuss', 'unrelated']
     targets_dict = dict(zip(targets, range(len(targets))))
-    combine['target'] = map(lambda x: targets_dict[x], combine['Stance'])
+    combine['target'] = list(map(lambda x: targets_dict[x], combine['Stance']))
     y_meta = combine['target'].values
     x_meta = combine[['prob_0','prob_1','prob_2','prob_3','Agree','Disagree','Discuss','Unrelated']].values
     
