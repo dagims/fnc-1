@@ -4,6 +4,7 @@ import numpy as np
 import pickle
 import gensim
 from sklearn.preprocessing import normalize
+from functools import reduce
 from helpers import *
 
 
