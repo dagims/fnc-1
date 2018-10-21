@@ -57,7 +57,7 @@ def split():
     print (len(train_sets), len(test_sets))
     with open('train_stances.csv','r') as f:
         reader = csv.reader(f)
-        reader.next()
+        next(reader)
         for l in reader:
 
             if int(l[1]) in train_sets:
@@ -69,7 +69,7 @@ def split():
     print (len(train), len(test))
 
     for dat, fn in zip([train, test],['train.csv','test.csv']):
-        with open(fn,'wb') as f:
+        with open(fn,'w') as f:
             writer = csv.writer(f)
             writer.writerow(['header'])
             for l in dat:
@@ -80,7 +80,7 @@ def proc_bodies(fn):
     tmp = {}
     with open(fn,'r') as f:
         reader = csv.reader(f)
-        reader.next()
+        next(reader)
         for line in reader:
             bid, text = line
             tmp[bid]=text
@@ -97,7 +97,7 @@ class News(object):
 
         with open(stances,'r') as f:
             reader = csv.reader(f)
-            reader.next()
+            next(reader)
             for line in reader:
                 if len(line)==2:
                     hl, bid = line
