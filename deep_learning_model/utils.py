@@ -8,10 +8,15 @@ import numpy as np
 import theano
 import theano.tensor as T
 
-try:
-	from theano.sandbox.cuda.dnn import dnn_conv, dnn_pool
-except:
-	from theano.gpuarray.dnn import dnn_conv, dnn_pool
+from theano.tensor.nnet import conv2d
+from theano.tensor.signal.pool import pool_2d, pool_3d
+
+#try:
+#	#from theano.sandbox.cuda.dnn import dnn_conv, dnn_pool
+#	from theano.tensor.nnet import conv2d
+#	from theano.tensor.signal.pool import pool_2d, pool_3d
+#except:
+#	from theano.gpuarray.dnn import dnn_conv, dnn_pool
 
 
 from theano.tensor.nnet import conv2d
@@ -69,7 +74,7 @@ def split():
     print (len(train), len(test))
 
     for dat, fn in zip([train, test],['train.csv','test.csv']):
-        with open(fn,'w') as f:
+        with open(fn,'w', encoding='utf-8', errors='ignore') as f:
             writer = csv.writer(f)
             writer.writerow(['header'])
             for l in dat:
@@ -78,7 +83,7 @@ def split():
 def proc_bodies(fn):
     #process the bodies csv into arrays
     tmp = {}
-    with open(fn,'r') as f:
+    with open(fn,'r', encoding='utf-8', errors='ignore') as f:
         reader = csv.reader(f)
         next(reader)
         for line in reader:
@@ -95,7 +100,7 @@ class News(object):
         self.headlines = []
         self.vecs=vecs
 
-        with open(stances,'r') as f:
+        with open(stances,'r', encoding='utf-8', errors='ignore') as f:
             reader = csv.reader(f)
             next(reader)
             for line in reader:
