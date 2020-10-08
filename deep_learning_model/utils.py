@@ -8,10 +8,14 @@ import numpy as np
 import theano
 import theano.tensor as T
 
-try:
-	from theano.sandbox.cuda.dnn import dnn_conv, dnn_pool
-except:
-	from theano.gpuarray.dnn import dnn_conv, dnn_pool
+from theano.tensor.nnet import conv2d
+from theano.tensor.signal.pool import pool_2d, pool_3d
+
+
+#try:
+#	from theano.sandbox.cuda.dnn import dnn_conv, dnn_pool
+#except:
+#	from theano.gpuarray.dnn import dnn_conv, dnn_pool
 
 
 from theano.tensor.nnet import conv2d

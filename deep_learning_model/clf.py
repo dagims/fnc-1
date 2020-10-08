@@ -78,7 +78,7 @@ class Conv1_Drop(object):
         self.drop_flag = drop_flag
 
     def __call__(self, inp):
-        conv_out = dnn_conv(inp, self.w, subsample=(1,self.stride), border_mode=(0,self.pad))+self.b.dimshuffle('x',0,'x','x')
+        conv_out = conv2d(inp, self.w, subsample=(1,self.stride), border_mode=(0,self.pad))+self.b.dimshuffle('x',0,'x','x')
 
         act = self.act
         if act == T.nnet.relu:
@@ -98,7 +98,7 @@ class Pool1(object):
         self.size=size
 
     def __call__(self, inp):
-        return dnn_pool(inp, (1,self.size), (1,self.size))
+        return pool_2d(inp, (1,self.size), (1,self.size))
         # return T.signal.pool.pool_2d(inp, (1,self.size))
 
 def dense(inp, n_in,n_out, act=T.nnet.relu):
@@ -188,7 +188,7 @@ def score(pred, act):
     return s
 
 if __name__ == '__main__':
-    theano.gpuarray.use('cuda1')
+    #theano.gpuarray.use('')
     v = GoogleVec()
     v.load()
 
